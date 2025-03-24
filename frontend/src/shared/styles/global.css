@@ -10,8 +10,9 @@ body {
   color: var(--color-text-primary);
   background-color: var(--color-background);
 }
+h1{position: absolute;left: -9999px;}
 a {
-  color: var(--color-primary);
+  color: var(--color-text-primary);
   text-decoration: none;
 }
 
