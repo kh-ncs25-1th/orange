@@ -10,7 +10,7 @@ body {
   color: var(--color-text-primary);
   background-color: var(--color-background);
 }
-h1{position: absolute;left: -9999px;}
+
 a {
   color: var(--color-text-primary);
   text-decoration: none;
@@ -23,7 +23,8 @@ strong, b {
 .app-container {
   min-height: 100vh;
 }
-.sr-only {
+/*화면에서 보이지 않지만 스크리리더가 읽을수 있게 설정함.*/
+.sr-only, h1 {
   position: absolute;
   width: 1px;
   height: 1px;

@@ -4,11 +4,13 @@ import Header from "../../widgets/Header"
 
 const DefaultLayout=()=>{
   return (<>
-    <Header />
-    <main>
-      <Outlet />
-    </main>
-    <Footer />
+    <div className="app-container">
+      <Header />
+      <main  className="main-content">
+        <Outlet />
+      </main>
+      <Footer />
+    </div>
   </>)
 }
 export default DefaultLayout;

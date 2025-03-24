@@ -3,10 +3,12 @@ import Footer from "../../widgets/Footer";
 
 const AuthLayout=()=>{
   return (<>
-    <main>
-      <Outlet />
-    </main>
-    <Footer />
+    <div className="app-container">
+      <main className="main-content">
+        <Outlet />
+      </main>
+      <Footer />
+    </div>
   </>)
 }
 export default AuthLayout;
