@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import './Header.css'
 import Input from '../../shared/ui/Input';
+import Icon from '../../shared/ui/Icon';
+import Button from '../../shared/ui/Button';
 const Header=()=>{
   return (<>
     <header className='header' >
@@ -10,27 +12,40 @@ const Header=()=>{
           <h1>로고</h1>
           <div className='flex ai-center'>
             <Link to={'/'}  className='header-logo'>ORANGE</Link>
-            <div>
+            <div className='header-search'>
               <label className='sr-only'>검색</label>
               <Input placeholder='검색어를 입력하세요'/>
             </div>
           </div>
         </section>
-        <nav>
+        <nav className='header-nav'>
           <h1>메인메뉴</h1>
           <div>
-            <ul className='flex'>
-              <li>
-                <Link to={'/post'} >POST</Link>
+            <ul className='flex ai-center'>
+              <li className='header-nav-item'>
+                <Link to={'/post'} >
+                  <Icon name="home" />
+                </Link>
               </li>
-              <li>
-                <Link to={'/'} >임시메뉴</Link>
+              <li className='header-nav-item'>
+                <Link to={'/'} >
+                  <Icon name="message" />
+                </Link>
               </li>
-              <li>
-                <Link to={'/login'} >로그인</Link>
+              <li className='header-nav-item'>
+                <Link to={'/'} >
+                  <Icon name="explore" />
+                </Link>
               </li>
-              <li>
-                <Link to={'/signup'} >회원가입</Link>
+              <li className='header-nav-item'>
+                <Link to={'/'} >
+                  <Icon name="heart" />
+                </Link>
+              </li>
+              <li className='header-nav-item'>
+                <Link to={'/login'} >
+                  <Button text='로그인' border={true}/>
+                </Link>
               </li>
             </ul>
           </div>

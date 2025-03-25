@@ -5,6 +5,7 @@ import HomePage from "../../pages/HomePage"
 import PostPage from "../../pages/PostPage"
 import LoginPage from "../../pages/LoginPage"
 import SignupPage from "../../pages/SignupPage"
+import FormSubmitBlocker from "./FormSubmitBlocker"
 
 const router=createBrowserRouter([
   {
@@ -43,7 +44,25 @@ const router=createBrowserRouter([
   },
 ])
 
-export default function AppRouter(){
-  return(<RouterProvider  router={router} />)
+/*
+function AppProvider({children}){
+  return(
+  <FormSubmitBlocker>
+    {children}
+    <RouterProvider  router={router} />
+  </FormSubmitBlocker>
+)
 }
+//*/
+//*
+//HOC::map
+const AppProvider=({children})=>(
+  <FormSubmitBlocker>
+    {children}
+    <RouterProvider  router={router} />
+  </FormSubmitBlocker>
+)
+//*/
+
+export default AppProvider;
   

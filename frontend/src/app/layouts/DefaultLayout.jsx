@@ -3,6 +3,7 @@ import Footer from "../../widgets/Footer"
 import Header from "../../widgets/Header"
 
 const DefaultLayout=()=>{
+  
   return (<>
     <div className="app-container">
       <Header />

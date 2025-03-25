@@ -18,3 +18,10 @@
   font-weight: bold;
   color: black;
 }
+.header-search{
+  margin-left: 10px;
+}
+
+.header-nav-item{
+  margin-left: 22px;
+}
