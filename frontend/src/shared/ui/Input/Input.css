@@ -6,11 +6,16 @@
 
 .input {
   padding: 8px 12px;
-  border: 1px solid #ccc;
+  border: none;
   border-radius: 4px;
   font-size: 14px;
   outline: none;
   transition: border-color 0.3s;
+  width: 100%;
+}
+.input::placeholder{
+  font-size: 13px;
+  color: #a9a9a9;
 }
 
 .input:focus {
@@ -24,4 +29,16 @@
 .input-error-message {
   color: #dc3545;
   font-size: 12px;
+}
+.input-wrap{
+  display: flex;
+  border: 1px solid #ccc;
+  align-items: center;
+}
+
+.input-icon{
+  margin-left:10px; /* 아이콘과 입력 필드 사이의 간격 */
+  display: inline-flex;
+  align-items: center;
+  height: 100%;
 }

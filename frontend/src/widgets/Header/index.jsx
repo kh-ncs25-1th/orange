@@ -3,6 +3,7 @@ import './Header.css'
 import Input from '../../shared/ui/Input';
 import Icon from '../../shared/ui/Icon';
 import Button from '../../shared/ui/Button';
+import { User } from 'lucide-react';
 const Header=()=>{
   return (<>
     <header className='header' >
@@ -43,8 +44,8 @@ const Header=()=>{
                 </Link>
               </li>
               <li className='header-nav-item'>
-                <Link to={'/login'} >
-                  <Button text='로그인' border={true}/>
+                <Link to={'/auth'} >
+                  <User />
                 </Link>
               </li>
             </ul>

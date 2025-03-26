@@ -3,9 +3,8 @@ import DefaultLayout from "../layouts/DefaultLayout"
 import AuthLayout from "../layouts/AuthLayout"
 import HomePage from "../../pages/HomePage"
 import PostPage from "../../pages/PostPage"
-import LoginPage from "../../pages/LoginPage"
-import SignupPage from "../../pages/SignupPage"
 import FormSubmitBlocker from "./FormSubmitBlocker"
+import AuthPage from "../../pages/AuthPage"
 
 const router=createBrowserRouter([
   {
@@ -23,22 +22,12 @@ const router=createBrowserRouter([
     ]
   },
   {
-    path:"/login",
+    path:"/auth",
     element :<AuthLayout />,
     children:[
       {
         index:true,
-        element:<LoginPage />
-      },
-    ]
-  },
-  {
-    path:"/signup",
-    element :<AuthLayout />,
-    children:[
-      {
-        index:true,
-        element:<SignupPage />
+        element:<AuthPage />
       },
     ]
   },

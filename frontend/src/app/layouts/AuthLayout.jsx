@@ -7,7 +7,6 @@ const AuthLayout=()=>{
       <main className="main-content">
         <Outlet />
       </main>
-      <Footer />
     </div>
   </>)
 }
