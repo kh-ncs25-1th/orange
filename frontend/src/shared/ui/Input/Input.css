@@ -22,18 +22,23 @@
   border-color: #007bff;
 }
 
-.input-error {
+.input-wrap.input-error {
   border-color: #dc3545;
 }
 
+.input-guide-message,
 .input-error-message {
   color: #dc3545;
-  font-size: 12px;
+  font-size: 11px;
+  text-align: left;
+  margin-left:10px;
+  letter-spacing: -.5px;
 }
 .input-wrap{
   display: flex;
   border: 1px solid #ccc;
   align-items: center;
+  border-radius: 3px;
 }
 
 .input-icon{
