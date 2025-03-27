@@ -1,5 +1,5 @@
 import React from 'react';
-import '../ui/AuthForm.css'
+import './AuthForm.css'
 import Input from "@shared/ui/Input"
 import Button from "@shared/ui/Button"
 import { Mail,LockKeyhole } from 'lucide-react';

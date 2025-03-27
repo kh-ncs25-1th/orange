@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import Button from "../../shared/ui/Button";
+import Button from "@shared/ui/Button";
 import "./AuthPage.css"
 import { useState } from "react";
-import LoginForm from "../../features/auth/components/LoginForm";
-import SignupForm from "../../features/auth/components/SignupForm";
+import LoginForm from "@features/auth/ui/LoginForm";
+import SignupForm from "@features/auth/ui/SignupForm";
 
 const AuthPage = () => {
   const [isLogin, setIsLogin]=useState(true);

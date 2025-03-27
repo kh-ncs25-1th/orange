@@ -2,58 +2,37 @@
 import React, { useState } from 'react';
 import Input from "@shared/ui/Input"
 import Button from "@shared/ui/Button"
-import '../ui/AuthForm.css'
+import './AuthForm.css'
 import { Mail, Lock, LockKeyhole, Tag } from 'lucide-react';
+import useSinupForm from '../model/useSignupForm';
 
 const SignupForm = () => {
   
-  const [formData, setFormData] = useState({
-    email: '',
-    pass: '',
-    nick: '',
-  });
-  const [errors, setErrors] = useState({});
+  const {formData, errors, handleBlur, handleChange} = useSinupForm();
  
-  // 유효성 검사 함수
-  const validate = (name, value) => {
-    console.log("유효성 검사 함수");
-    switch (name) {
-      case 'email':
-        return /\S+@\S+\.\S+/.test(value) ? '' : '유효한 이메일 주소를 입력하세요.';
-      case 'pass':
-        return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%/])[A-Za-z\d!@#$%/]{12,}$/.test(value)
-          ? ''
-          : '대문자, 소문자, 특수문자, 숫자 포함 12자 이상';
-      case 'passConfirm':
-        return formData.pass?(value === formData.pass ? '' : '비밀번호가 일치하지 않습니다.'):'비밀번호를 먼저 입력 하여야 합니다.';
-      case 'nick':
-        return value?(value.length >= 2 ? '나중에 중복체크해야해요' : '닉네임은 2자 이상이어야 합니다.'):'';
-      default:
-        return '';
-    }
-  };
-  const handleBlur=(e)=>{
-    console.log(e.target)
-    const {name, value} = e.target;
-    const error = validate(name, value);
-
-    console.log(name,":",value);
-
-    setErrors({...errors,[name]:error});
-  }
-  const handleChange=(e)=>{
-    const {name, value} = e.target;
-    if(name==="passConfirm")return;
-    setFormData({...formData,[name]:value});
-  }
-
   const handleSubmit=()=>{
-    console.log(formData);
+    const url="http://localhost:8080/api/auth"
+    //현재기준으로 수집한 데이터가 정상적인 데이터인지 확인
+    console.log("errors==>",errors);
+    const success=Object.values(errors).every(error=>error.length === 0);
+    console.log("전체유효성통과? ",success);
+    console.log("formData==>",formData);
+    const init={
+      method: "POST",
+      headers:{
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData)
+    }
+    fetch(url,init)
+      .then(response=>response.json())
+      .then(data=>console.log(data))
+    
   }
 
   return (<>
     <h1>회원가입</h1>
-    <form onSubmit={handleSubmit} className='signup-form auth-form'>
+    <form  onSubmit={handleSubmit} className='signup-form auth-form'>
       <dl>
         <dt className='sr-only'><label>이메일</label></dt>
         <dd>

@@ -1,10 +1,10 @@
 import {createBrowserRouter, RouterProvider} from "react-router-dom"
 import DefaultLayout from "../layouts/DefaultLayout"
 import AuthLayout from "../layouts/AuthLayout"
-import HomePage from "../../pages/HomePage"
-import PostPage from "../../pages/PostPage"
+import HomePage from "@pages/HomePage"
+import PostPage from "@pages/PostPage"
 import FormSubmitBlocker from "./FormSubmitBlocker"
-import AuthPage from "../../pages/AuthPage"
+import AuthPage from "@pages/AuthPage"
 
 const router=createBrowserRouter([
   {

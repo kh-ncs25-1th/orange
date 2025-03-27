@@ -11,8 +11,10 @@ node_modules
 dist
 dist-ssr
 *.local
+*.properties
 
 # Editor directories and files
+.metadata
 .vscode/*
 !.vscode/extensions.json
 .idea

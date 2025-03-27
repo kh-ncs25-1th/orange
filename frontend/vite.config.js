@@ -8,10 +8,11 @@ export default defineConfig({
   // 알리아스(alias)
   resolve:{
     alias:{
-      "@shared": path.resolve(__dirname,"src/shared"),
-      "@widgets": path.resolve(__dirname,"src/widgets"),
-      "@entities": path.resolve(__dirname,"src/entities"),
       "@pages": path.resolve(__dirname,"src/pages"),
+      "@widgets": path.resolve(__dirname,"src/widgets"),
+      "@features": path.resolve(__dirname,"src/features"),
+      "@entities": path.resolve(__dirname,"src/entities"),
+      "@shared": path.resolve(__dirname,"src/shared"),
     }
   }
 })
