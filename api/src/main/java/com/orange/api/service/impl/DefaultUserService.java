@@ -1,5 +1,7 @@
 package com.orange.api.service.impl;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.orange.api.domain.dto.UserSaveDTO;
@@ -16,8 +18,7 @@ public class DefaultUserService implements UserService {
 	//jpa-테이블에 접근하는 객체(DAO-repository)
 	//인터페이스로 만들어야합니다.
 	private final UserRepository repository;
-	
-	
+	private final PasswordEncoder passwordEncoder;//스프링이 처음에 시작할때 Bean을 주입(DI)
 	
 	@Override
 	public UserEntity save(UserSaveDTO dto) {
@@ -25,7 +26,7 @@ public class DefaultUserService implements UserService {
 		//추가적으로수집할 데이터가 있으면 여기서 작성하면됩니다.(예:IP수집)
 		//UserEntity entity=new UserEntity(0, dto.getEmail(), dto.getPass(), dto.getNick(), null, null);
 		//UserEntity entity=UserEntity.builder().email(dto.getEmail()).pass(dto.getPass()).nick(dto.getNick()).build();
-		return repository.save(dto.toEntity());
+		return repository.save(dto.toEntity(passwordEncoder));
 	}
 
 }

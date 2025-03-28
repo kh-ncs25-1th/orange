@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './Input.css'
 
 const Input = ({
+  ref,
   type = 'text',
   name,
   placeholder,
@@ -27,6 +28,7 @@ const Input = ({
       <div className={`input-wrap ${errorClass}`}>
         {icon && <span className="input-icon">{icon}</span>} {/* 아이콘 추가 */}
         <input
+          ref={ref}
           type={type}
           name={name}
           className={`input`}

@@ -1,5 +1,7 @@
 package com.orange.api.domain.dto;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 import com.orange.api.domain.entity.UserEntity;
 
 import lombok.Getter;
@@ -14,10 +16,10 @@ public class UserSaveDTO {
 	private String nick;
 	
 	//DB에 저장하기위한 DTO->JPA(UserEntity)
-	public UserEntity toEntity() {
+	public UserEntity toEntity(PasswordEncoder pe) {
 		return UserEntity.builder()
 				.email(email)
-				.pass(pass)
+				.pass(pe.encode(pass))
 				.nick(nick)
 				.build();
 	}
