@@ -20,7 +20,7 @@ const AuthPage = () => {
           //처음에 보이는 영역
           (<LoginForm />)
           :
-          (<SignupForm />)
+          (<SignupForm setIsLogin={setIsLogin} />)
           }
           {isLogin?(
           //처음보이는 영역

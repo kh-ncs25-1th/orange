@@ -6,7 +6,7 @@ import './AuthForm.css'
 import { Mail, Lock, LockKeyhole, Tag } from 'lucide-react';
 import useSinupForm from '../model/useSignupForm';
 
-const SignupForm = () => {
+const SignupForm = ({setIsLogin}) => {
   
   const {formData, errors, handleBlur, handleChange} = useSinupForm();
  
@@ -16,6 +16,8 @@ const SignupForm = () => {
     console.log("errors==>",errors);
     const success=Object.values(errors).every(error=>error.length === 0);
     console.log("전체유효성통과? ",success);
+    if(!success)return;
+
     console.log("formData==>",formData);
     const init={
       method: "POST",
@@ -26,7 +28,9 @@ const SignupForm = () => {
     }
     fetch(url,init)
       .then(response=>response.json())
-      .then(data=>console.log(data))
+      .then(data=>{
+        console.log("회원가입 처리완료!")
+        setIsLogin(true)})
     
   }
 

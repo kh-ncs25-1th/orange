@@ -32,8 +32,7 @@ public class UserController {
 	//return 값->
 	@PostMapping("/api/auth")
 	public ResponseEntity<?> create(@RequestBody UserSaveDTO dto) {//Jackson
-		service.save(dto);
-		return ResponseEntity.ok(dto);
+		return ResponseEntity.ok(service.save(dto));
 	}
 	
 	//M(비지니스(서비스)로직)V(React)C(요청,응답)

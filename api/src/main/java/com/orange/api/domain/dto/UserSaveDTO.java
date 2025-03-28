@@ -1,5 +1,7 @@
 package com.orange.api.domain.dto;
 
+import com.orange.api.domain.entity.UserEntity;
+
 import lombok.Getter;
 import lombok.ToString;
 
@@ -10,4 +12,14 @@ public class UserSaveDTO {
 	private String email;
 	private String pass;
 	private String nick;
+	
+	//DB에 저장하기위한 DTO->JPA(UserEntity)
+	public UserEntity toEntity() {
+		return UserEntity.builder()
+				.email(email)
+				.pass(pass)
+				.nick(nick)
+				.build();
+	}
+	
 }

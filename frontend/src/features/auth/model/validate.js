@@ -14,7 +14,7 @@ export const validatePassword=(password)=>
     : '대문자, 소문자, 특수문자, 숫자 필수 포함, 12자 이상'
 export const validateNickname=(nickname)=>
   nickname
-    ?(nickname.length >= 2 ? '나중에 중복체크해야해요' : '닉네임은 2자 이상이어야 합니다.')
+    ?(nickname.length >= 2 ? '' : '닉네임은 2자 이상이어야 합니다.')
     :'';
 export const validatePasswordConfirm=(confirmPass, originPass)=>
   originPass
