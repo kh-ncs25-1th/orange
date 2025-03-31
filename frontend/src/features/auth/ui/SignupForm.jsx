@@ -1,14 +1,20 @@
 
-import React, { useState } from 'react';
+import React, { use, useState } from 'react';
 import Input from "@shared/ui/Input"
 import Button from "@shared/ui/Button"
 import './AuthForm.css'
 import { Mail, Lock, LockKeyhole, Tag } from 'lucide-react';
 import useSinupForm from '../model/useSignupForm';
+import Modal from '../../../shared/ui/Modal';
+import SignupContent from './SignupContent';
 
 const SignupForm = ({setIsLogin}) => {
   
   const {formData, errors, handleBlur, handleChange} = useSinupForm();
+
+  const [isResposeData, setIsResponseData]=useState(false);
+  const [resposeData, setResposeData]=useState(null);
+  const [isError, setIsError]=useState(false);
  
   const handleSubmit=()=>{
     const url="http://localhost:8080/api/auth"
@@ -30,12 +36,38 @@ const SignupForm = ({setIsLogin}) => {
       .then(response=>response.json())
       .then(data=>{
         console.log("회원가입 처리완료!")
-        setIsLogin(true)})
-    
+        //console.log(data.no,data.email,data.nick, data.updateAt);
+        setIsResponseData(true);
+        setResposeData(data);
+      })
+      .catch(error=>{
+        console.log("회원가입 실패!");
+        setIsError(true)
+      })
   }
+  const hanldeCloseModal=()=>{
+    setIsResponseData(false);
+    setIsLogin(true)//로그인페이지로 이동
+  }
+  const hanldeErrorModal=()=>{
+    setIsError(false);
+  }
+
 
   return (<>
     <h1>회원가입</h1>
+    {/* 회원가입후 회원정보를 보여주는 모달 */}
+    <Modal isOpen={isResposeData} onClose={hanldeCloseModal} title="회원가입 완료">
+      <SignupContent data={resposeData} onClose={hanldeCloseModal} />
+    </Modal>
+    {/* 회원가입이 실패한경우 */}
+    <Modal isOpen={isError} onClose={hanldeErrorModal} title="회원가입 실패">
+      <div>
+        <p>네트워크 통신이 정상적이지 않아 회원가입이 실패하였습니다.</p>
+        <Button onClose={hanldeErrorModal} text="확인" variant="primary" />
+      </div>
+    </Modal>
+  
     <form  onSubmit={handleSubmit} className='signup-form auth-form'>
       <dl>
         <dt className='sr-only'><label>이메일</label></dt>
