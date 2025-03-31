@@ -7,6 +7,8 @@ import { Mail, Lock, LockKeyhole, Tag } from 'lucide-react';
 import useSinupForm from '../model/useSignupForm';
 import Modal from '../../../shared/ui/Modal';
 import SignupContent from './SignupContent';
+import useSignupSubmit from '../model/useSignupSubmit';
+
 
 const SignupForm = ({setIsLogin}) => {
   
@@ -15,36 +17,12 @@ const SignupForm = ({setIsLogin}) => {
   const [isResposeData, setIsResponseData]=useState(false);
   const [resposeData, setResposeData]=useState(null);
   const [isError, setIsError]=useState(false);
- 
-  const handleSubmit=()=>{
-    const url="http://localhost:8080/api/auth"
-    //현재기준으로 수집한 데이터가 정상적인 데이터인지 확인
-    console.log("errors==>",errors);
-    const success=Object.values(errors).every(error=>error.length === 0);
-    console.log("전체유효성통과? ",success);
-    if(!success)return;
 
-    console.log("formData==>",formData);
-    const init={
-      method: "POST",
-      headers:{
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData)
-    }
-    fetch(url,init)
-      .then(response=>response.json())
-      .then(data=>{
-        console.log("회원가입 처리완료!")
-        //console.log(data.no,data.email,data.nick, data.updateAt);
-        setIsResponseData(true);
-        setResposeData(data);
-      })
-      .catch(error=>{
-        console.log("회원가입 실패!");
-        setIsError(true)
-      })
-  }
+ const handleSubmit=useSignupSubmit(
+    formData,
+    errors,
+    setIsResponseData,setResposeData,setIsError);
+  
   const hanldeCloseModal=()=>{
     setIsResponseData(false);
     setIsLogin(true)//로그인페이지로 이동
