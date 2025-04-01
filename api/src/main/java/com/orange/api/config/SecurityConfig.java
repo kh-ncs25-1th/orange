@@ -39,7 +39,7 @@ public class SecurityConfig {
 			//.userDetailsService(userDetailsService())
 			.authorizeHttpRequests((authorize) -> authorize
 				//이부분에 보안처리할 uri를 설정하는 구간입니다.
-				.requestMatchers("/api/auth").permitAll()	
+				.requestMatchers("/api/**").permitAll()	
 				.anyRequest().authenticated()//나머지는 인증을 해야함.
 			);
 

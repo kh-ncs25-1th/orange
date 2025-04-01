@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.orange.api.domain.dto.ResponUser;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -40,5 +42,13 @@ public class UserEntity {//jpa 물리DB 테이블을 대신하는 java객체
 	private LocalDateTime createdAt;
 	@UpdateTimestamp
 	private LocalDateTime updatedAt;
+	
+	//Entity->DTO로 map해주는 편의 메서드를 만들어볼께요
+	public ResponUser toResponseUser(){
+		return ResponUser.builder()
+				.no(no).email(email).nick(nick).updatedAt(updatedAt)
+				.build();
+	}
+	
 	
 }
