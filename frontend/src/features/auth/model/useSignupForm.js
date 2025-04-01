@@ -12,7 +12,10 @@ const useSinupForm = () => {
     passConfirm: '',
     nick: '',
   });
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState({email: '',
+    pass: '',
+    passConfirm: '',
+    nick: '',});
 
   const validate=(name, value)=>{
     switch (name) {

@@ -1,18 +1,18 @@
 import { signupRequst } from "../api/useSignupApi";
 
-const useSignupSubmit=({
+const useSignupSubmit = ({
   formData,
   errors,
-  setIsResponseData,
-  setResposeData,
-  setIsError
-})=>{
-  const handleSubmit= async()=>{
-    const isSuccess=Object.values(errors).every(error=>error.log===0);
-    if(!isSuccess) return;
+  handlers: {setIsResponseData,setResposeData,setIsError}
+
+}) => {
+  const handleSubmit = async () => {
+    console.log(">>>", errors);
+    const isSuccess = Object.values(errors).every(error => error.length === 0);
+    if (!isSuccess) return;
 
     try {
-      const data=await signupRequst(formData);
+      const data = await signupRequst(formData);
       console.log("회원가입 처리완료!")
       setResposeData(data);
       setIsResponseData(true);

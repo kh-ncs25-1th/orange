@@ -18,10 +18,11 @@ const SignupForm = ({setIsLogin}) => {
   const [resposeData, setResposeData]=useState(null);
   const [isError, setIsError]=useState(false);
 
- const handleSubmit=useSignupSubmit(
+ const handleSubmit=useSignupSubmit({
     formData,
     errors,
-    setIsResponseData,setResposeData,setIsError);
+    handlers:{setIsResponseData,setResposeData,setIsError}
+  });
   
   const hanldeCloseModal=()=>{
     setIsResponseData(false);
@@ -30,7 +31,17 @@ const SignupForm = ({setIsLogin}) => {
   const hanldeErrorModal=()=>{
     setIsError(false);
   }
+  //회원가입 버튼 활성화 여부
+  const isSubmitDisabled=()=>{
+    //모든 필수 항목이 입력되었는지
+    const requiredFields=["email","pass","passConfirm"];
+    //java-stream()
+    const isAllFieldsFilled=requiredFields.every(field=>formData[field]?.length>0);
+    //모든 에러가 없는지 확인
+    const hasNoErrors=Object.values(errors).every(error=>error.length===0);
 
+    return !isAllFieldsFilled || !hasNoErrors;
+  }
 
   return (<>
     <h1>회원가입</h1>
@@ -94,7 +105,7 @@ const SignupForm = ({setIsLogin}) => {
       <dl>
         <dt className='sr-only'><label>회원가입버튼</label></dt>
         <dd>
-          <Button type="submit"  text="회원가입" fullWidth={true} />
+          <Button type="submit" disabled={isSubmitDisabled()}  text="회원가입" fullWidth={true} />
         </dd>
       </dl>
     </form>
