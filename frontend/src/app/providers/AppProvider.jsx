@@ -5,6 +5,7 @@ import HomePage from "@pages/HomePage"
 import PostPage from "@pages/PostPage"
 import FormSubmitBlocker from "./FormSubmitBlocker"
 import AuthPage from "@pages/AuthPage"
+import ErrorBoundary from "@shared/ui/ErrorBoundary"
 
 const router=createBrowserRouter([
   {
@@ -46,10 +47,12 @@ function AppProvider({children}){
 //*
 //HOC::map
 const AppProvider=({children})=>(
-  <FormSubmitBlocker>
-    {children}
-    <RouterProvider  router={router} />
-  </FormSubmitBlocker>
+  <ErrorBoundary>
+    <FormSubmitBlocker>
+      {children}
+      <RouterProvider  router={router} />
+    </FormSubmitBlocker>
+  </ErrorBoundary>
 )
 //*/
 
